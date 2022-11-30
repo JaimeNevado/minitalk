@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/02/18 10:45:42 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:16:27 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-void	handle_function(int sig)
+size_t	ft_strlcpy(char *dest, char *src, size_t dstsize)
 {
-	printf("Stop not allowed\n");
-}
+	size_t	i;
+	size_t	len;
 
-
-int	main(void)
-{
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
-
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1)
+	i = 0;
+	len = 0;
+	while (src[len] != '\0')
+		len++;
+	if (dstsize > 0)
 	{
-		sleep(1);
+		while ((i < (dstsize - 1)) && (src[i] != '\0'))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
 	}
-	return (0);
+	return (len);
 }

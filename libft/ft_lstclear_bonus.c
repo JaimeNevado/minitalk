@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/05/20 14:43:29 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:24:49 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-void	handle_function(int sig)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	printf("Stop not allowed\n");
-}
+	t_list	*gon;
+	t_list	*aux;
 
-
-int	main(void)
-{
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
-
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1)
+	aux = *lst;
+	if (!aux)
+		return ;
+	while (aux)
 	{
-		sleep(1);
+		gon = aux->next;
+		del(aux->content);
+		free(aux);
+		aux = gon;
 	}
-	return (0);
+	*lst = NULL;
 }

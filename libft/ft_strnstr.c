@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/04/29 21:12:09 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:16:50 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-void	handle_function(int sig)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	printf("Stop not allowed\n");
-}
+	size_t	i;
+	size_t	j;
 
-
-int	main(void)
-{
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
-
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1)
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	j = 0;
+	while (j < len && haystack[j])
 	{
-		sleep(1);
+		i = 0;
+		while (j < len && needle[i] && haystack[j] && needle[i] == haystack[j])
+		{
+			++i;
+			++j;
+		}
+		if (needle[i] == '\0')
+			return ((char *)&haystack[j - i]);
+		j = j - i + 1;
 	}
 	return (0);
 }

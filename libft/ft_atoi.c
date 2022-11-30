@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:47 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:53 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/02/24 19:38:17 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/17 17:39:24 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include <sys/types.h>
-
-
-//Libft
-int	ft_isdigit(int n)
-{
-	if ((n < '0') || (n > '9'))
-		return (0);
-	return (1);
-}
+#include "libft.h"
 
 static	int	ft_checkspace(int c)
 {
@@ -58,23 +46,4 @@ int	ft_atoi(const char *str)
 		return (0);
 	}
 	return ((int) num);
-}
-
-//minitalk
-int	main(int argc, char **str)
-{
-	int	i;
-
-	if (!(argc == 3))
-	{
-		printf("Numero de parametros erroneos");
-		return (0);
-	}
-	i = ft_atoi(str[1]);
-	if (kill(i, SIGUSR2))
-		printf("Ha fallado");
-	else
-		printf("Ha funcionado");
-
-	return (0);
 }

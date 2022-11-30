@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/05/04 11:25:37 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:15:46 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-void	handle_function(int sig)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	printf("Stop not allowed\n");
-}
+	unsigned int	i;
 
-
-int	main(void)
-{
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
-
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1)
+	if (!dst && !src)
+		return (0);
+	if (dst > src)
 	{
-		sleep(1);
+		while (len > 0)
+		{
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
+			len--;
+		}
 	}
-	return (0);
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return (dst);
 }

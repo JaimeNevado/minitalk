@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/05/17 17:47:06 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:14:08 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-void	handle_function(int sig)
+void	ft_putstr_fd(char *s, int fd)
 {
-	printf("Stop not allowed\n");
-}
+	int	i;
 
-
-int	main(void)
-{
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
-
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1)
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
 	{
-		sleep(1);
+		write (fd, &s[i], 1);
+		i++;
 	}
-	return (0);
 }
