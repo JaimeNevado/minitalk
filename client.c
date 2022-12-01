@@ -6,7 +6,7 @@
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:52:47 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:53 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:56:25 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,33 @@ int	ft_atoi(const char *str)
 	return ((int) num);
 }
 
+
+
 //minitalk
+void	ft_handler(int signal)
+{
+	int	reception;
+
+	if (signal == SIGUSR1)
+		reception = 1;
+	else
+		printf("%d\n", signal);
+}
+
+void	ft_send(int pid, char *str)
+{
+	int		i;
+	int		bit;
+	char	character;
+
+	bit = 0;
+	while (str[i] != '\0')
+	{
+		character = str[i];
+		
+	}
+}
+
 int	main(int argc, char **str)
 {
 	int	i;
@@ -71,10 +97,7 @@ int	main(int argc, char **str)
 		return (0);
 	}
 	i = ft_atoi(str[1]);
-	if (kill(i, SIGUSR2))
-		printf("Ha fallado");
-	else
-		printf("Ha funcionado");
-
+	signal(SIGUSR1, ft_handler);
+	ft_send(i, str[2]);
 	return (0);
 }
