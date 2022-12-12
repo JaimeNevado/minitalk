@@ -1,4 +1,3 @@
-
 SRCS = client.c server.c
 OBJS = $(SRCS:.c=.o)
 
