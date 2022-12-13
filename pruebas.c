@@ -4,19 +4,20 @@
 
 int	main()
 {
-	int		i;
-	char	caracter;
+	//Operadores binarios
+	char	c;
+	int	bit;
 
-	i = 0;
-	caracter = 'a';
-
-	while (i < 8)
+	c = 'a'; //a = 1100001
+	bit = 1;
+	while (bit < 8)
 	{
-		if (5 & (-5))
-			printf("Son iguales");
+		if ((c % 2 == 1))
+			write(1, &"1", 1);
 		else
-			printf("No son iguales");
-		i++;
+			write(1, &"0", 1);
+		c = c / 2;
+		bit++;
 	}
 	return (0);
 }

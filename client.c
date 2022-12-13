@@ -63,41 +63,51 @@ int	ft_atoi(const char *str)
 
 
 //minitalk
-void	ft_handler(int signal)
+void	ft_reception(int signal)
 {
-	int	reception;
-
 	if (signal == SIGUSR1)
-		reception = 1;
-	else
-		printf("%d\n", signal);
+		printf("Ack");
 }
 
-void	ft_send(int pid, char *str)
+void	ft_send(int pid, char c)
 {
-	int		i;
-	int		bit;
-	char	character;
+	int		position;
 
-	bit = 0;
-	while (str[i] != '\0')
+	position = 0;
+	while (position < 8)
 	{
-		character = str[i];
-		
+		if ((c % 2 == 1))
+			printf("1");
+		else
+			printf("0");
+		c = c / 2;
+		position++;
+		usleep(100);
 	}
+	printf(" ");
 }
 
 int	main(int argc, char **str)
 {
 	int	i;
+	int	pid;
 
+	i = 0;
+	pid = ft_atoi(str[1]);
 	if (!(argc == 3))
 	{
 		printf("Numero de parametros erroneos");
 		return (0);
 	}
-	i = ft_atoi(str[1]);
-	signal(SIGUSR1, ft_handler);
-	ft_send(i, str[2]);
+	else
+	{
+		while ((str[2][i]))
+		{
+			ft_send(pid, str[2][i]);
+			i++;
+		}
+		ft_send('\0', pid);
+	}
+	signal(SIGUSR1, ft_reception);
 	return (0);
 }
