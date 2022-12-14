@@ -6,34 +6,51 @@
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:52:53 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:21:02 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:20:26 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "minitalk.h"
 
-void	handle_function(int sig)
+void	ft_handle_function(int signal, siginfo_t *info, void *context)
 {
-	printf("Stop not allowed\n");
-}
+	int						digit;
+	static int				i = 0;
+	static unsigned char	c = 0;
 
+	digit = 0;
+	(void)context;
+	if (signal == SIGUSR1)
+		digit = 1;
+	else if (signal == SIGUSR2)
+		digit = 0;
+	else
+		exit(-1);
+	c = c + (digit << i++);
+	if (i == 8)
+	{
+		ft_printf("%c", c);
+		i = 0;
+		c = 0;
+	}
+	kill (info->si_pid, SIGUSR1);
+}
 
 int	main(void)
 {
-	struct sigaction sa;
-	sa.sa_handler = &handle_function;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGTSTP, &sa, NULL);
-	int	pid;
+	int		pid;
+	struct	sigaction sa;
 
 	pid = getpid();
 	printf("%d\n", pid);
+	sa.sa_sigaction = ft_handle_function;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		sleep(1);
+		pause();
+		usleep(50);
 	}
 	return (0);
 }
