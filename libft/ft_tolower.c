@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 13:32:21 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/12/22 11:02:08 by jaimenevado      ###   ########.fr       */
+/*   Created: 2022/02/18 09:46:48 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/10 16:06:51 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-
-# define MINITALK_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include "libft.h"
-
-#endif
+int	ft_tolower(int n)
+{
+	if (n >= 'A' && n <= 'Z')
+		n = n + 32;
+	return (n);
+}

@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 13:32:21 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/12/22 11:02:08 by jaimenevado      ###   ########.fr       */
+/*   Created: 2022/05/05 15:24:55 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:16:19 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
+#include "libft.h"
 
-# define MINITALK_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include "libft.h"
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	while (*(char *)s != (char)c && *s)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (0);
+}

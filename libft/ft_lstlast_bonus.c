@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 13:32:21 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/12/22 11:02:08 by jaimenevado      ###   ########.fr       */
+/*   Created: 2022/05/20 12:27:04 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/05/20 16:14:13 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
+#include "libft.h"
 
-# define MINITALK_H
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*list;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include "libft.h"
-
-#endif
+	if (lst == NULL)
+		return (NULL);
+	list = lst->next;
+	while (list)
+	{
+		lst = list;
+		list = lst->next;
+	}
+	return (lst);
+}

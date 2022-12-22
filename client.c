@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:52:47 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/12/14 14:59:43 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:16:42 by jaimenevado      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include "printf.h"
 
 void	ft_reception(int signal)
 {

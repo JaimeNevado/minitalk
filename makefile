@@ -3,45 +3,32 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+         #
+#    By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 13:44:11 by jnevado-          #+#    #+#              #
-#    Updated: 2022/12/14 16:37:47 by jnevado-         ###   ########.fr        #
+#    Updated: 2022/12/22 11:06:34 by jaimenevado      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-SRCS = extras/ft_atoi.c extras/ft_isdigit.c extras/ft_printf_char.c \
-		extras/ft_printf_decimal.c extras/ft_printf_hexlower.c \
-		extras/ft_printf_hexupper.c extras/ft_printf_integer.c \
-		extras/ft_printf_pointer.c extras/ft_printf_string.c \
-		extras/ft_printf_unsigned.c extras/ft_printf.c \
-		client.c server.c
-
-OBJS = ${SRCS:.c=.o}
-
-CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -rf
+CLIENT = client
 
-${NAME}:
-	${CC} -c ${CFLAGS} ${SRCS}
-	ar crs ${NAME} ${OBJS}
+SERVER = server
 
-all: ${NAME}
+LIBFT = libft/libft.a
 
-clean: 
-	rm -rf ${OBJS}
+INC = -I libft
 
-fclean: clean
-	rm -rf ${NAME}
+all: $(CLIENT) $(SERVER)
 
-re: fclean all
+$(CLIENT): $(LIBFT) client.c
+	@gcc $(CFLAGS) $(INC) -o $(CLIENT) client.c $(LIBFT)
 
-credit:
+$(SERVER): $(LIBFT) server.c
+	@gcc $(CFLAGS) $(INC) -o $(SERVER) client.c $(LIBFT)
+
+$(LIBFT):
 	@echo	"                                                                                           "
 	@echo	"   ▄▄▄▄███▄▄▄▄    ▄█  ███▄▄▄▄    ▄█      ███        ▄████████  ▄█          ▄█   ▄█▄ 		"
 	@echo	" ▄██▀▀▀███▀▀▀██▄ ███  ███▀▀▀██▄ ███  ▀█████████▄   ███    ███ ███         ███ ▄███▀ 		"
@@ -53,5 +40,15 @@ credit:
 	@echo	"  ▀█   ███   █▀  █▀    ▀█   █▀  █▀      ▄████▀     ███    █▀  █████▄▄██   ███   ▀█▀ 		"
 	@echo	"    			   																			"
 	@echo	"         by : jnevado-																		"
+	@make -C libft
+
+clean:
+	@make -C libft clean
+
+fclean: clean
+	@make -C libft fclean
+	@rm -rf $(CLIENT) $(SERVER) 
+
+RM = rm -rf
 
 .PHONY: all bonus libft printf clean fclean re
