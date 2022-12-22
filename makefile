@@ -6,7 +6,7 @@
 #    By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 13:44:11 by jnevado-          #+#    #+#              #
-#    Updated: 2022/12/22 11:06:34 by jaimenevado      ###   ########.fr        #
+#    Updated: 2022/12/22 12:17:20 by jaimenevado      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,10 @@ $(CLIENT): $(LIBFT) client.c
 	@gcc $(CFLAGS) $(INC) -o $(CLIENT) client.c $(LIBFT)
 
 $(SERVER): $(LIBFT) server.c
-	@gcc $(CFLAGS) $(INC) -o $(SERVER) client.c $(LIBFT)
+	@gcc $(CFLAGS) $(INC) -o $(SERVER) server.c $(LIBFT)
 
 $(LIBFT):
+	@make -C libft
 	@echo	"                                                                                           "
 	@echo	"   ▄▄▄▄███▄▄▄▄    ▄█  ███▄▄▄▄    ▄█      ███        ▄████████  ▄█          ▄█   ▄█▄ 		"
 	@echo	" ▄██▀▀▀███▀▀▀██▄ ███  ███▀▀▀██▄ ███  ▀█████████▄   ███    ███ ███         ███ ▄███▀ 		"
@@ -40,14 +41,23 @@ $(LIBFT):
 	@echo	"  ▀█   ███   █▀  █▀    ▀█   █▀  █▀      ▄████▀     ███    █▀  █████▄▄██   ███   ▀█▀ 		"
 	@echo	"    			   																			"
 	@echo	"         by : jnevado-																		"
-	@make -C libft
+	@echo "*******************"
+	@echo ✅ Files created ✅
+	@echo "*******************"
 
 clean:
 	@make -C libft clean
+	@echo "******************************"
+	@echo 📖 Deleting libft *.o files 📖
+	@echo "******************************"
 
 fclean: clean
 	@make -C libft fclean
-	@rm -rf $(CLIENT) $(SERVER) 
+	@rm -rf $(CLIENT) $(SERVER)
+	@echo "******************"
+	@echo 🚀 Deleting all 🚀
+	@echo "******************"
+
 
 RM = rm -rf
 

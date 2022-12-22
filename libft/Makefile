@@ -6,7 +6,7 @@
 #    By: jaimenevado <jaimenevado@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 10:52:48 by jaimenevado       #+#    #+#              #
-#    Updated: 2022/12/22 10:52:58 by jaimenevado      ###   ########.fr        #
+#    Updated: 2022/12/22 11:24:53 by jaimenevado      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,11 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
 		ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-		ft_putnbr_fd.c ft_striteri.c
+		ft_putnbr_fd.c ft_striteri.c ft_printf_char.c \
+		ft_printf_decimal.c ft_printf_hexlower.c \
+		ft_printf_hexupper.c ft_printf_integer.c \
+		ft_printf_pointer.c ft_printf_string.c \
+		ft_printf_unsigned.c ft_printf_string.c ft_printf.c
 
 SRCSB	= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstlast_bonus.c \
 		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c \
